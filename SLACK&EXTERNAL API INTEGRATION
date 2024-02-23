@@ -1,0 +1,15 @@
+SLACKS API
+
+The following is a list of APIs within SLACK we plan on implementing into our task manager
+
+WEB Api - a majority of Slack’s functionality revolves around their HTTP methods and we will be using these API calls for task tracking/monitoring, task creation and assignment, and customization settings.
+
+EVENTS Api - this will allow us to create external tasks that can be pushed directly into the app which will help us in task creation.
+
+EXTERNAL APIs
+
+These are external APIs that we plan on integrating into our plugin.
+
+ARGO CD - this api is easily compatible with Slack and will help us in sending real time notifications at different stages of a task creation to help users track progress.
+
+Google Calendar API - google’s api allows for customization to fit the branding of our plugin and it can be easily integrated with Slack’s web api so teams and businesses can plan stay organized.
