@@ -17,3 +17,8 @@ firebase login
 firebase functions:config:set slack.signing_secret=xxx
 firebase functions:config:set slack.bot_token=xoxb-111-111-xxx
 ```
+
+## How to deploy
+```
+firebase deploy
+```
