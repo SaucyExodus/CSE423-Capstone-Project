@@ -2,8 +2,9 @@
 
 This is the start to our Task Management App which runs on Cloud Functions for Firebase.
 
-Team Colorabators:
+Team Collaborator:
 * Gage Cates
+* Hunter Smith
 * 
 
 ## Setup
