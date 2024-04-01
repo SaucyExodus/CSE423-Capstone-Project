@@ -14,12 +14,14 @@ const app = new App({
     processBeforeResponse: true,
 });
 
+// Error handler
 app.error(console.log);
 
+// Handle '/echo-from-firebase' command
 app.command('/echo-from-firebase', async ({ command, ack, say }) => {
-
+    // Acknowledge command request
     await ack();
-
+    // Responds with writing in chat.    
     await say(`You said "${command.text}"`)
 })
 
