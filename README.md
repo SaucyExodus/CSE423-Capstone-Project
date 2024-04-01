@@ -5,7 +5,8 @@ This is the start to our Task Management App which runs on Cloud Functions for F
 Team Collaborator:
 * Gage Cates
 * Hunter Smith
-* 
+* Annalise LaCourse
+* Veda Valiveti
 
 ## Setup
 
