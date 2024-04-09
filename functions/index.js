@@ -2,6 +2,8 @@ const functions = require('firebase-functions');
 const config = functions.config();
 
 const { App, ExpressReceiver } = require('@slack/bolt');
+const { registerListeners } = require('./listeners');
+
 const expressReceiver = new ExpressReceiver({
     signingSecret: config.slack.signing_secret,
     endpoints: '/events',
@@ -13,6 +15,7 @@ const app = new App({
     token: config.slack.token,
     processBeforeResponse: true,
 });
+registerListeners(app);
 
 // Error handler
 app.error(console.log);
