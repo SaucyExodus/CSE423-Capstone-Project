@@ -1,5 +1,4 @@
 const newTaskCallback = async ({ ack, body, client }) => {
-    await ack();
 
     // Print modal
     try {
