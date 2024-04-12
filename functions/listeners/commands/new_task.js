@@ -1,11 +1,13 @@
-const newTaskCallback = async ({ command, client }) => {
+const newTaskCallback = async ({ ack, body, client }) => {
+    await ack();
 
     // Print modal
     try {
         const result = await client.views.open({
 
-            trigger_id: command.trigger_id,
-
+            trigger_id: body.trigger_id,
+            
+            // View payload
             view: {
                 "type": "modal",
                 "title": {
