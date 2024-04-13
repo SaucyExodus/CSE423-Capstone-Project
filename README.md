@@ -20,8 +20,8 @@ After Node and Firebase is installed successfully, clone the repository and foll
 firebase login
 cd functions
 npm install
-~firebase functions:config:set slack.signing_secret=xxx~
-~firebase functions:config:set slack.bot_token=xoxb-111-111-xxx~
+~~firebase functions:config:set slack.signing_secret=xxx~~
+~~firebase functions:config:set slack.bot_token=xoxb-111-111-xxx~~
 ```
 
 ## How to deploy
