@@ -34,7 +34,8 @@ const appHomeOpenedCallback = async ({ event, client }) => {
                                     "emoji": true
                                 },
                                 "style": "primary",
-                                "value": "create_task"
+                                "value": "create_task",
+                                "action_id":"create_task"
                             },
                             {
                                 "type": "button",

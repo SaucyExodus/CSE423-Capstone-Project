@@ -4,6 +4,7 @@ const config = functions.config();
 const { App, ExpressReceiver } = require('@slack/bolt');
 const { registerListeners } = require('./listeners');
 
+
 const expressReceiver = new ExpressReceiver({
     signingSecret: config.slack.signing_secret,
     endpoints: '/events',
@@ -75,5 +76,119 @@ app.command('/show-board', async ({ ack, say }) => {
 
     await say(boardText);
 });
+
+app.action('create_task', async ({ body, ack, client }) => {
+    // Acknowledge the action
+    await ack();
+    console.log(body)
+    try {
+      // Call views.update with the built-in client
+      await client.views.update({
+          // Pass the view_id
+          view_id: body.view.id,
+          // Pass the current hash to avoid race conditions
+          hash: body.view.hash,
+          // View payload with updated blocks
+   
+          /* body of the view */
+          view: {
+            "type": "modal",
+            "title": {
+                "type": "plain_text",
+                "text": "Create new task",
+                "emoji": true
+            },
+            "submit": {
+                "type": "plain_text",
+                "text": "Submit",
+                "emoji": true
+            },
+            "close": {
+                "type": "plain_text",
+                "text": "Cancel",
+                "emoji": true
+            },
+            "blocks": [
+                {
+                    "type": "divider"
+                },
+                {
+                    "type": "input",
+                    "element": {
+                        "type": "plain_text_input",
+                        "action_id": "plain_text_input-action",
+                        "placeholder": {
+                            "type": "plain_text",
+                            "text": "Enter your task here",
+                            "emoji": true
+                        }
+                    },
+                    "label": {
+                        "type": "plain_text",
+                        "text": "New task",
+                        "emoji": true
+                    }
+                },
+                {
+                    "type": "input",
+                    "element": {
+                        "type": "multi_users_select",
+                        "placeholder": {
+                            "type": "plain_text",
+                            "text": "Select users",
+                            "emoji": true
+                        },
+                        "action_id": "multi_users_select-action"
+                    },
+                    "label": {
+                        "type": "plain_text",
+                        "text": "Assign user",
+                        "emoji": true
+                    }
+                },
+                {
+                    "type": "input",
+                    "element": {
+                        "type": "datepicker",
+                        "placeholder": {
+                            "type": "plain_text",
+                            "text": "Select a date",
+                            "emoji": true
+                        },
+                        "action_id": "datepicker-action"
+                    },
+                    "label": {
+                        "type": "plain_text",
+                        "text": "Due date ",
+                        "emoji": true
+                    },
+                    "optional": true
+                },
+                {
+                    "type": "input",
+                    "element": {
+                        "type": "timepicker",
+                        "placeholder": {
+                            "type": "plain_text",
+                            "text": "Select time",
+                            "emoji": true
+                        },
+                        "action_id": "timepicker-action"
+                    },
+                    "label": {
+                        "type": "plain_text",
+                        "text": "Time",
+                        "emoji": true
+                    },
+                    "optional": true
+                }
+            ]
+        }
+    });
+}
+      catch (error) {
+        console.error(error);
+      }
+  });
 
 exports.myBot = functions.https.onRequest(expressReceiver.app);
