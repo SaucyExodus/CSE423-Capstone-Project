@@ -4,6 +4,7 @@ const config = functions.config();
 const { App, ExpressReceiver } = require('@slack/bolt');
 const { registerListeners } = require('./listeners');
 const { createNewTaskModal } = require('./listeners/commands/new_task');
+const { kanbanBoardModal } = require('./listeners/commands/kanban_board');
 
 const expressReceiver = new ExpressReceiver({
     signingSecret: config.slack.signing_secret,
@@ -77,7 +78,7 @@ app.command('/show-board', async ({ ack, say }) => {
     await say(boardText);
 });
 
-
+// Handle Create Task Button actions
 app.action('create_task', async ({ ack, body, client }) => {
     try {
         await ack(); // Acknowledge the action
@@ -88,5 +89,15 @@ app.action('create_task', async ({ ack, body, client }) => {
     }
 });
 
+// Handle Open Kanban Board Button actions
+app.action('open_kanban', async ({ ack, body, client }) => {
+    try {
+        await ack(); // Acknowledge the action
+        // Call the function to open the modal
+        await kanbanBoardModal({ trigger_id: body.trigger_id, client });
+    } catch (error) {
+        console.error(error);
+    }
+});
 
 exports.myBot = functions.https.onRequest(expressReceiver.app);
