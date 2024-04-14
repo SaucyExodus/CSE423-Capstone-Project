@@ -41,10 +41,12 @@ const appHomeOpenedCallback = async ({ event, client }) => {
                                 "type": "button",
                                 "text": {
                                     "type": "plain_text",
-                                    "text": "Create New Project",
+                                    "text": "Open Kanban Board",
                                     "emoji": true
                                 },
-                                "value": "create_project"
+                                "style": "primary",
+                                "value": "create_project",
+                                "action_id":"open_kanban"
                             },
                             {
                                 "type": "button",
