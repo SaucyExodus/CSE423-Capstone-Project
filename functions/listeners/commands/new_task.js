@@ -1,8 +1,8 @@
 const { App } = require('@slack/bolt');
 
-const createNewTaskModal = async ({ trigger_id }) => {
+const createNewTaskModal = async ({ trigger_id, client }) => {
     try {
-        await App.client.views.open({
+        await client.views.open({
             trigger_id,
             view: {
                 "type": "modal",
